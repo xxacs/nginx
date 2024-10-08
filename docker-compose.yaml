@@ -14,7 +14,7 @@ services:
     depends_on:
       - proxydb
     networks:
-      - nginx-proxy
+      - nginx-proxy-network
 
   proxydb:
     image: 'yobasystems/alpine-mariadb:latest'
@@ -28,14 +28,14 @@ services:
     volumes:
       - ./data/mysql:/var/lib/mysql
     networks:
-      - nginx-proxy
-      
+      - nginx-proxy-network
+
 volumes:
   mysql:
   data:
   letsencrypt:
 
 networks:
-  nginx-proxy:
-    external:
-      name: nginx-proxy-network
+  nginx-proxy-network:
+    external: true
+    name: nginx-proxy-network
